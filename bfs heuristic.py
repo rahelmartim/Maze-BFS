@@ -52,29 +52,37 @@ class Game():
     def valid_moves(self):
         v_moves = []
         #up
-        if self.player.x - 1 >= 0:
-            if self.field[self.player.x-1][self.player.y] in VALIDS_MOVES:
-                new_move = copy.deepcopy(self)
-                new_move.move(Point(self.player.x-1, self.player.y))
-                v_moves.append(new_move)                                                    
+        if (
+            self.player.x >= 1
+            and self.field[self.player.x - 1][self.player.y] in VALIDS_MOVES
+        ):
+            new_move = copy.deepcopy(self)
+            new_move.move(Point(self.player.x-1, self.player.y))
+            v_moves.append(new_move)
         #down
-        if self.player.x + 1 <= (len(self.field)-1):
-            if self.field[self.player.x+1][self.player.y] in VALIDS_MOVES:
-                new_move = copy.deepcopy(self)
-                new_move.move(Point(self.player.x+1, self.player.y))
-                v_moves.append(new_move)
+        if (
+            self.player.x + 1 <= (len(self.field) - 1)
+            and self.field[self.player.x + 1][self.player.y] in VALIDS_MOVES
+        ):
+            new_move = copy.deepcopy(self)
+            new_move.move(Point(self.player.x+1, self.player.y))
+            v_moves.append(new_move)
         #left
-        if self.player.y - 1 >= 0:
-            if self.field[self.player.x][self.player.y-1] in VALIDS_MOVES:
-                new_move = copy.deepcopy(self)
-                new_move.move(Point(self.player.x, self.player.y-1))
-                v_moves.append(new_move)
+        if (
+            self.player.y >= 1
+            and self.field[self.player.x][self.player.y - 1] in VALIDS_MOVES
+        ):
+            new_move = copy.deepcopy(self)
+            new_move.move(Point(self.player.x, self.player.y-1))
+            v_moves.append(new_move)
         #right
-        if self.player.y + 1 <= (len(self.field[0])-1):
-            if self.field[self.player.x][self.player.y+1] in VALIDS_MOVES:
-                new_move = copy.deepcopy(self)
-                new_move.move(Point(self.player.x, self.player.y+1))
-                v_moves.append(new_move)
+        if (
+            self.player.y + 1 <= (len(self.field[0]) - 1)
+            and self.field[self.player.x][self.player.y + 1] in VALIDS_MOVES
+        ):
+            new_move = copy.deepcopy(self)
+            new_move.move(Point(self.player.x, self.player.y+1))
+            v_moves.append(new_move)
 
         return v_moves
 class Node():
